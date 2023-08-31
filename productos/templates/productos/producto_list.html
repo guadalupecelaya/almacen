@@ -1,0 +1,55 @@
+{% extends 'base3.html' %}
+
+
+{% block titulo %}
+    Lista de productos
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+
+<h1 class="h3 mb-3">Lista de productos adquiridos</h1>
+
+
+<hr>
+<a href="{% url 'productos:nuevo' %}" class="btn btn-primary" style="background-color:#0a0a0a">Nuevo Producto</a>
+<a href="{% url 'tipoproducto:lista' %}" class="btn btn-primary" style="background-color:#0a0a0a">Materiales</a>
+
+
+
+<br>
+<br>
+<table class="table">
+    <thead class="table-dark">
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Fecha</th>
+        <th>Proveedor</th>
+        <th>Acciones</th>
+        
+    </thead>
+    <tbody>
+        {% for producto in productos  %}
+        <tr>
+            <td>{{producto.nombre}}</td>
+            <td>{{producto.precio}}</td>
+            <td>{{producto.cantidad}}</td>
+            <td>{{producto.fecha}}</td>
+            <td>{{producto.proveedor}}</td>
+            
+            <td>   
+                <div lass="btn-group" role="group" aria-label="Basic outlined example">
+                    <a  method="POST" href="{% url 'productos:eliminar' producto.id %}"  class="btn btn-primary">Eliminar</a>
+                    <a  method="POST" href="{% url 'productos:editar' producto.id %}"  class="btn btn-primary">Editar</a>
+                </div>
+            </td>
+
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock contenido %}

@@ -1,0 +1,24 @@
+{% extends 'base3.html' %}
+
+{% block titulo %}
+    {{etiqueta}} Solicitudes
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<h1 class="app-page-title">{{etiqueta}} Solicitud</h1>
+<hr>
+<div class="form">
+   <form method="POST">
+        {% csrf_token %}
+    
+        {{form.as_p}}
+        <div>
+            <button type="submit" class="btn btn-primary btn-large" id="btn_aceptar" style="margin-bottom: 1.5em;">Aceptar</button><br>
+        </div>
+    </form>  
+</div>
+
+
+{% endblock contenido %}

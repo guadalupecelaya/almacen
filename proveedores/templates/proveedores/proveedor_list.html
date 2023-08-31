@@ -1,0 +1,51 @@
+{% extends 'base3.html' %}
+
+
+{% block titulo %}
+    Lista de proveedores
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+
+<h1>Lista de proveedores registrados</h1>
+
+<hr>
+<a href="{% url 'proveedores:nuevo' %}" class="btn btn-primary" style="background-color:#0a0a0a">Nuevo Proveedor</a>
+<br>
+<br>
+<table class="table">
+    <thead class="table-dark">
+        <th>Nombre</th>
+        <th>Razón Social</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Acciones</th>
+        
+    </thead>
+    <tbody>
+        {% for proveedor in proveedores  %}
+        <tr>
+            <td>{{proveedor.nombre}}</td>
+            <td>{{proveedor.razonsocial}}</td>
+            <td>{{proveedor.domicilio}}</td>
+            <td>{{proveedor.telefono}}</td>
+            <td>
+                <div lass="btn-group" role="group" aria-label="Basic outlined example">
+                    <a href="{% url 'proveedores:ver' proveedor.id %}" class="btn btn-outline-primary">Detalles</a>
+                    <a class="btn btn-outline-primary" href="{% url 'proveedores:editar' proveedor.id %}">Editar<a>
+                    <a class="btn btn-outline-primary" href="{% url 'proveedores:eliminar' proveedor.id %}">Eliminar<a>
+                </div>
+            </td>
+
+            <td></td>
+            <td></td>
+
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock contenido %}

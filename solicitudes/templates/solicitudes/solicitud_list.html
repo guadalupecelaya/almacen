@@ -1,0 +1,56 @@
+{% extends 'base3.html' %}
+
+
+{% block titulo %}
+    Lista de solicitudes
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+
+<h1 class="h3 mb-3">Lista de solicitudes </h1>
+
+
+<hr>
+<a href="{% url 'solicitudes:nuevo' %}" class="btn btn-primary" style="background-color:#0a0a0a">Nuevo solicitud</a>
+
+
+<br>
+<br>
+<table class="table">
+    <thead class="table-dark">
+        <th>Producto</th>
+        <th>Fecha</th>
+        <th>Unidades</th>
+        <th>Usuario</th>
+        <th>Departamento</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+        
+        
+    </thead>
+    <tbody>
+        {% for solicitud in solicitudes  %}
+        <tr>
+            <td>{{solicitud.producto}}</td>
+            <td>{{solicitud.fecha}}</td>
+            <td>{{solicitud.unidades}}</td>
+            <td>{{solicitud.usuario}}</td>
+            <td>{{solicitud.departamento}}</td>
+            <td>{{solicitud.estado}}</td>
+            {% if solicitud.estado == 'Pendiente' %}
+            <td>   
+                <div lass="btn-group" role="group" aria-label="Basic outlined example">
+                    <a  method="POST" href="{% url 'solicitudes:aceptar' solicitud.id %}" style="background-color:#0a0a0a" class="btn btn-primary">Aceptar</a>
+                </div>
+           </td>
+           {% endif %}
+
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock contenido %}

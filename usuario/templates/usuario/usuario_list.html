@@ -1,0 +1,70 @@
+{% extends 'base3.html' %}
+{% load static %}
+
+{% block titulo %}
+    Lista de Usuarios
+{% endblock titulo %}
+
+{% block contenido %}
+<h1 class="app-page-title">Lista de Usuaries</h1>
+<hr>
+<a href="{% url 'usuario:nuevo' %}" class="btn btn-primary" style="background-color:#0a0a0a">Nuevo Usuario</a>
+<br>
+<br>
+<div class="app-card app-card-orders-lable shadow-sm mb-s">
+  
+  
+ 
+  <table class="table  table-borderless" >
+      <thead class="table-dark" >
+          <th>Nombre de Usuario</th>
+          <th>Permisos</th>
+      </thead>
+      <tbody>
+          {% for usuario in usuarios %}
+          <tr>
+                <td>{{usuario.username}}</td>
+                
+                      <td>
+                        {% if perms.auth.administrador_permiso %}
+                        {% for grupo in lista_grupos %}
+                          {% if grupo in usuario.groups.all %}
+                          <a href="{% url 'usuario:cambia_grupo' grupo.id usuario.id %}" class="btn btn-outline-primary">{{grupo}}</a>
+                          {% else %}
+                          <a href="{% url 'usuario:cambia_grupo' grupo.id usuario.id %}"class="btn btn-outline-danger">{{grupo}}</a>
+                          {% endif %}
+                      {% endfor %}
+                      
+                      </td>
+                     
+          </tr>
+          {% endif %}
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalEliminarLabel">Eliminar Videojuego</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalCuerpo">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          
+          <form id="formEliminar" method="post">
+              {% csrf_token %}
+              <button class="btn btn-danger" type="sumbit">Eliminar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endblock contenido %}

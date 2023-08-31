@@ -1,0 +1,39 @@
+{% extends 'base3.html' %}
+
+
+{% block titulo %}
+    Detalle de proveedor
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+
+<br>
+<div class="card" style="width: 18rem;">
+    <div class="card-header">
+        <b>{{object.nombre}}</b>
+    </div>
+    <div class="card-body">
+        <!--<h5 class="card-title" class="card-header">{{object.titulo}}</h1>-->
+        <p class="card-text">Razón Social: {{object.razonsocial}}</p>
+        <p class="card-text">Domicilio: {{object.domicilio}}</p>
+        <p class="card-text">Teléfono: {{object.telefono}}</p>
+        <p class="card-text">RFC: {{object.rfc}}</p>
+        <p class="card-text">Correo electrónico: {{object.correoelectronico}}</p>
+        <p class="card-text">Régimen Fiscal: {{object.regimenfiscal}}</p>
+
+        {% if object.descripcion %}
+            <div class="card-subtitle mb-2 text-muted">
+                {{object.descripcion}}
+            </div>
+        {% endif %}
+
+        
+    </div>
+    
+</div>
+<br>
+<a href="{% url 'proveedores:lista' %}" class="btn btn-primary">Regresar</a>
+
+{% endblock contenido %}

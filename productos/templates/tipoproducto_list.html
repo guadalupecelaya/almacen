@@ -1,0 +1,43 @@
+{% extends 'base3.html' %}
+
+
+{% block titulo %}
+    Lista de Materiales
+{% endblock titulo %}
+
+
+{% block contenido %}
+<h1 class="h3 mb-3">Materiales</h1>
+<div class="app-card app-card-orders-lable shadow-sm mb-s">
+    
+  <table class="table">
+      <thead class="table-dark">
+          <th>ID</th>
+          <th>Nombre del producto</th>
+          <th>Cantidad</th>
+          <th>Acciones</th>
+      </thead>
+      <tbody>
+          {% for tipoproducto in tipoproductos %}
+          <tr>
+              <td>{{tipoproducto.id}}</td>
+              <td>{{tipoproducto.nombre}}</td>
+              <td>{{tipoproducto.cantidad}}</td>
+              <td>
+                <div lass="btn-group" role="group" aria-label="Basic outlined example">
+                    <a  class="btn btn-outline-primary"  href="{% url 'tipoproducto:eliminar' tipoproducto.id %}">Eliminar</a>
+                    <a  class="btn btn-outline-primary"  href="{% url 'tipoproducto:editar' tipoproducto.id %}">Editar</a>
+                    <!-- Button trigger modal -->
+                   
+                </div>
+              </td>
+              
+              
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+  </div>
+  <a href="{% url 'tipoproducto:alta'%}" class="btn btn-info" >Agregar</a></td>
+
+{% endblock contenido %}

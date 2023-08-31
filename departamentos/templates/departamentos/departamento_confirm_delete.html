@@ -1,0 +1,19 @@
+{% extends 'base3.html' %}
+{% block contenido %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Departamento</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <p>Quieres eliminar el departamento "{{ object }}"?</p>
+        <input type="submit" value="Sí, si quiero">
+        <a href="{% url 'departamentos:lista' %}">Mejor no</a>
+    </form>
+</body>
+</html>
+{% endblock contenido %}

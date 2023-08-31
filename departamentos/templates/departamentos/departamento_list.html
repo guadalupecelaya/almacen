@@ -1,0 +1,44 @@
+{% extends 'base3.html' %}
+
+
+{% block titulo %}
+    Lista de departamentos
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+
+<h1 class="app-page-title">Lista de Departamentos</h1>
+<div class="app-card app-card-orders-lable shadow-sm mb-s" id="tabla-departamentos"></div>
+
+<hr>
+<a href="{% url 'departamentos:nuevo' %}" style="background-color:#0a0a0a" class="btn btn-primary">Nuevo Departamento</a>
+
+<br>
+<br>
+<table class="table  table-borderless">
+    <thead class="table-dark">
+        <th>Nombre</th>
+
+
+        <th>Acciones</th>
+    
+
+    <tbody>
+        {% for depto in departamentos  %}
+        <tr>
+            <td>{{depto.nombre}}</td>
+            
+            <td>   
+                <div lass="btn-group" role="group" aria-label="Basic outlined example">
+                    <a  method="POST" href="{% url 'departamentos:eliminar' depto.id %}" style="background-color:#0a0a0a" class="btn btn-primary">Eliminar</a>
+                </div>
+           </td>
+        </tr>
+        {% endfor %}
+    </thead>
+    </tbody>
+</table>
+
+{% endblock contenido %}
